@@ -1,40 +1,29 @@
 public class Scoreboard
 {
-    private String teamOne = "red";
+    private String teamOne;
     private String teamTwo;
     private int teamOneScore;
     private int teamTwoScore;
-    private String activeTeam = teamOne;
+    private String activeTeam;
     public Scoreboard(String one, String two)
     {
         teamOne = one;
         teamTwo = two;
+        activeTeam = teamOne;
     }
     
-    public void recordPlay(int score)
-    {
-
-       if (score == 0){
-        if (activeTeam == teamOne){
-            activeTeam = teamTwo;
-        }
-        else{
-            activeTeam = teamOne;
-        }
-       }
-       else{
-        if (activeTeam == teamOne){
-            teamOneScore += score;
-        }
-        else{
-            teamTwoScore += score;
-       }
-    }
+public String getScore()
+{
+    return teamOneScore + "-" + teamTwoScore + "-" + activeTeam;
 }
-        public String getScore()
+public void recordPlay(int score){
+    if(teamOne.equals(activeTeam)) teamOneScore += score;
+    if(teamTwo.equals(activeTeam)) teamTwoScore += score;
+    if(score == 0)
     {
-        //teamOne = one;
-        //teamTwo = two;
-        return teamOneScore + "-" + teamTwoScore + "-" + activeTeam;
+        if(activeTeam.equals(teamOne)) activeTeam = teamTwo;
+        else if(activeTeam.equals(teamTwo)) activeTeam = teamOne;
     }
+
+}
 }
